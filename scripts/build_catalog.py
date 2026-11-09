@@ -68,6 +68,13 @@ EXCLUDE_WORDS = [
     "perfumery colour", "perfume colour", "colorant", "colourant", "dye",
 ]
 
+INTERNAL_TAG_PREFIXES = ("missing", "no_reg", "regs_done", "sds_", "best seller", "thirdparty", "heat")
+
+
+def public_tags(tags: list[str]) -> list[str]:
+    return [t for t in tags if not t.lower().startswith(INTERNAL_TAG_PREFIXES)]
+
+
 # ── Classification keywords (lowercase) ────────────────────────────────────
 
 NOTE_KEYWORDS = {
@@ -119,8 +126,9 @@ PROFILE_KEYWORDS = {
 }
 
 STRENGTH_WORDS = [
-    ("Very strong", ["extremely powerful", "very powerful", "incredibly powerful", "potent", "high impact",
-                     "use sparingly", "use with care", "tiny amounts", "trace amounts", "overpowering"]),
+    ("Very strong", ["extremely powerful", "very powerful", "incredibly powerful", "potent", "potency", "high impact",
+                     "use sparingly", "use with care", "tiny amounts", "trace amounts", "in traces", "overpowering",
+                     "extreme caution", "staggering", "dose with caution", "a little goes a long way"]),
     ("Strong",      ["powerful", "strong", "diffusive", "intense", "radiant", "bold", "big"]),
     ("Soft",        ["soft", "subtle", "delicate", "mild", "gentle", "weak", "faint", "quiet", "low odour", "low odor"]),
 ]
@@ -183,6 +191,20 @@ def parse_grams(variant: dict) -> float | None:
     return float(grams) if grams else None
 
 
+def product_image(prod: dict) -> str:
+    """First product photo on Shopify's CDN, without size/version query."""
+    img = prod.get("image") or {}
+    src = img.get("src") if isinstance(img, dict) else None
+    if not src:
+        images = prod.get("images") or []
+        src = images[0].get("src") if images and isinstance(images[0], dict) else None
+    if not src:
+        return ""
+    if src.startswith("//"):
+        src = "https:" + src
+    return src.split("?")[0]
+
+
 def size_label(variant: dict, grams: float | None) -> str:
     title = str(variant.get("title") or "").strip()
     if title and title.lower() != "default title":
@@ -201,6 +223,14 @@ def is_excluded(title: str, product_type: str, tags: list[str]) -> bool:
 
 def classify_kind(title: str, product_type: str, tags: list[str]) -> str:
     t, pt, tg = title.lower(), product_type.lower(), " ".join(tags).lower()
+    tagset = {x.lower() for x in tags}
+    # Fraterworks tags its catalogue: aromachem / natural / eo / absolute / co2 / compound …
+    if "compound" in tagset:
+        return "compound"
+    if "aromachem" in tagset:
+        return "aroma-chemical"
+    if tagset & {"natural", "eo", "essential", "absolute", "co2", "tincture", "isolate", "resinoid", "attar"}:
+        return "natural"
     if "compound" in t or "compound" in pt or "accord" in pt:
         return "compound"
     if "base" in pt or re.search(r"(?<![a-z])bases?(?![a-z])", tg):
@@ -214,12 +244,12 @@ def classify_kind(title: str, product_type: str, tags: list[str]) -> str:
     return "other"
 
 
-def guess_form(title: str, desc: str, dilution) -> str:
-    text = (title + " " + desc).lower()
+def guess_form(title: str, tags: list[str], dilution) -> str:
+    text = (title + " " + " ".join(tags)).lower()
     if dilution:
         return "Dilution"
     for word, form in [("crystal", "Crystals"), ("powder", "Powder"), ("solid", "Solid"),
-                       ("resinoid", "Resinoid"), ("resin", "Resin"), ("absolute", "Absolute"),
+                       ("paste", "Paste"), ("resinoid", "Resinoid"), ("resin", "Resin"), ("absolute", "Absolute"),
                        ("concrete", "Concrete"), ("co2", "CO2 extract"), ("essential oil", "Essential oil"),
                        (" oil", "Oil")]:
         if word in " " + text:
@@ -332,7 +362,7 @@ def normalise(prod: dict, supplier_id: str, base_url: str, currency: str, overri
         "url": f"{base_url}/products/{handle}",
         "currency": currency,
         "kind": classify_kind(title, product_type, tags),
-        "form": guess_form(title, desc, dilution),
+        "form": guess_form(title, tags, dilution),
         "cas": cas.group(1) if cas else "",
         "dilution": dilution,
         "noteType": note_guess or "middle",
@@ -341,7 +371,8 @@ def normalise(prod: dict, supplier_id: str, base_url: str, currency: str, overri
         "profiles": guess_profiles(parts),
         "estimated": ["noteType", "longevity", "strength", "profiles"],
         "description": desc[:DESCRIPTION_MAX_CHARS] if INCLUDE_DESCRIPTIONS else "",
-        "tags": tags,
+        "tags": public_tags(tags),
+        "image": product_image(prod),
         "variants": variants,
         "minPrice": min(v["price"] for v in variants),
         "available": any(v["available"] for v in variants),

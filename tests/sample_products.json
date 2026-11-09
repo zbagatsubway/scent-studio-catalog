@@ -1,9 +1,168 @@
-{"products":[
-{"id":101,"title":"Hedione®","handle":"hedione","vendor":"Firmenich","product_type":"Aroma Chemical","tags":["Floral","Jasmine","Heart"],"body_html":"<p>Radiant, transparent jasmine with a fresh citrus edge. CAS 24851-98-7. Very diffusive, lasts 3 days on a blotter.</p>","updated_at":"2026-10-01T00:00:00+13:00","variants":[{"id":1,"title":"10g","price":"6.50","grams":10,"available":true},{"id":2,"title":"5g","price":"3.75","grams":5,"available":true},{"id":3,"title":"100g","price":"38.00","grams":100,"available":false}]},
-{"id":102,"title":"Bergamot Oil FCF","handle":"bergamot-oil-fcf","vendor":"LMR","product_type":"Natural","tags":["Citrus"],"body_html":"Luxury bergamot. Fresh, zesty and sparkling top note.","variants":[{"id":4,"title":"4g","price":"8.00","grams":4,"available":true}]},
-{"id":103,"title":"Beginner's Journey Kit","handle":"learning-kit-one","vendor":"Fraterworks","product_type":"Kit","tags":[],"body_html":"Kit","variants":[{"id":5,"title":"Default Title","price":"99.00","grams":200,"available":true}]},
-{"id":104,"title":"Ambrarome Absolute Synarome 10% in TEC","handle":"ambrarome-10","vendor":"Synarome","product_type":"","tags":["Amber"],"body_html":"Warm animalic amber, powerful and tenacious.","variants":[{"id":6,"title":"5 g","price":"5.00","grams":5,"available":true}]},
-{"id":105,"title":"Compound Nile","handle":"compound-nile","vendor":"Fraterworks","product_type":"Compound","tags":[],"body_html":"Ready to dilute perfume concentrate.","variants":[{"id":7,"title":"10g","price":"7.50","grams":10,"available":true}]},
-{"id":106,"title":"Helvetolide®","handle":"helvetolide","vendor":"Firmenich","product_type":"Aroma Chemical","tags":["Musk"],"body_html":"Soft, fruity pear musk. Long-lasting fixative.","variants":[{"id":8,"title":"1kg","price":"210.00","grams":1000,"available":true},{"id":9,"title":"10g","price":"5.00","grams":10,"available":true}]},
-{"id":107,"title":"Perfumery Colour - Red","handle":"colour-red","vendor":"Fraterworks","product_type":"Colour","tags":[],"body_html":"","variants":[{"id":10,"title":"10ml","price":"4.00","grams":10,"available":true}]}
-]}
+{
+"products": [
+{
+"id": 101,
+"title": "Hedione\u00ae",
+"handle": "hedione",
+"vendor": "Firmenich",
+"product_type": "Aroma Chemical",
+"tags": [
+"Floral",
+"Jasmine",
+"Heart",
+"missing_info"
+],
+"body_html": "<p>Radiant, transparent jasmine with a fresh citrus edge. CAS 24851-98-7. Very diffusive, lasts 3 days on a blotter.</p>",
+"updated_at": "2026-10-01T00:00:00+13:00",
+"variants": [
+{
+"id": 1,
+"title": "10g",
+"price": "6.50",
+"grams": 10,
+"available": true
+},
+{
+"id": 2,
+"title": "5g",
+"price": "3.75",
+"grams": 5,
+"available": true
+},
+{
+"id": 3,
+"title": "100g",
+"price": "38.00",
+"grams": 100,
+"available": false
+}
+],
+"images": [
+{
+"src": "https://cdn.shopify.com/s/files/1/0682/1448/9400/files/hedione.jpg?v=123"
+}
+]
+},
+{
+"id": 102,
+"title": "Bergamot Oil FCF",
+"handle": "bergamot-oil-fcf",
+"vendor": "LMR",
+"product_type": "Natural",
+"tags": [
+"Citrus"
+],
+"body_html": "Luxury bergamot. Fresh, zesty and sparkling top note.",
+"variants": [
+{
+"id": 4,
+"title": "4g",
+"price": "8.00",
+"grams": 4,
+"available": true
+}
+]
+},
+{
+"id": 103,
+"title": "Beginner's Journey Kit",
+"handle": "learning-kit-one",
+"vendor": "Fraterworks",
+"product_type": "Kit",
+"tags": [],
+"body_html": "Kit",
+"variants": [
+{
+"id": 5,
+"title": "Default Title",
+"price": "99.00",
+"grams": 200,
+"available": true
+}
+]
+},
+{
+"id": 104,
+"title": "Ambrarome Absolute Synarome 10% in TEC",
+"handle": "ambrarome-10",
+"vendor": "Synarome",
+"product_type": "",
+"tags": [
+"Amber"
+],
+"body_html": "Warm animalic amber, powerful and tenacious.",
+"variants": [
+{
+"id": 6,
+"title": "5 g",
+"price": "5.00",
+"grams": 5,
+"available": true
+}
+]
+},
+{
+"id": 105,
+"title": "Compound Nile",
+"handle": "compound-nile",
+"vendor": "Fraterworks",
+"product_type": "Compound",
+"tags": [],
+"body_html": "Ready to dilute perfume concentrate.",
+"variants": [
+{
+"id": 7,
+"title": "10g",
+"price": "7.50",
+"grams": 10,
+"available": true
+}
+]
+},
+{
+"id": 106,
+"title": "Helvetolide\u00ae",
+"handle": "helvetolide",
+"vendor": "Firmenich",
+"product_type": "Aroma Chemical",
+"tags": [
+"Musk"
+],
+"body_html": "Soft, fruity pear musk. Long-lasting fixative.",
+"variants": [
+{
+"id": 8,
+"title": "1kg",
+"price": "210.00",
+"grams": 1000,
+"available": true
+},
+{
+"id": 9,
+"title": "10g",
+"price": "5.00",
+"grams": 10,
+"available": true
+}
+]
+},
+{
+"id": 107,
+"title": "Perfumery Colour - Red",
+"handle": "colour-red",
+"vendor": "Fraterworks",
+"product_type": "Colour",
+"tags": [],
+"body_html": "",
+"variants": [
+{
+"id": 10,
+"title": "10ml",
+"price": "4.00",
+"grams": 10,
+"available": true
+}
+]
+}
+]
+}
