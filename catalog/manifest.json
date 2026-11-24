@@ -3,7 +3,7 @@
  "suppliers": [
   {
    "id": "fraterworks",
-   "updatedAt": "2026-11-22T22:28:35Z",
+   "updatedAt": "2026-11-24T03:20:27Z",
    "name": "Fraterworks",
    "country": "New Zealand",
    "website": "https://fraterworks.com",
@@ -11,13 +11,13 @@
    "file": "fraterworks.json",
    "currency": "USD",
    "count": 1388,
-   "version": "bae76d6fd85b1402"
+   "version": "8dc18c415a19424c"
   }
  ],
  "rates": {
   "file": "rates.json",
   "base": "USD",
-  "date": "2026-11-20",
-  "version": "b6d50761cad1c0e0"
+  "date": "2026-11-23",
+  "version": "7d2aa210da0dcd3a"
  }
 }
